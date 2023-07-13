@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./BookList.css";
+import { useState } from 'react';
 
 const Book = (book) => {
-    const handleAddToFavourite = () => {
-        alert('Added to card !');
-      };
+  const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
+
+  const handleAddToFavourite = () => {
+    setIsAddedToFavorites(true);
+  };
+
   return (
     <div className='book-item flex flex-column flex-sb'>
       <div className='book-item-img'>
@@ -33,9 +37,10 @@ const Book = (book) => {
           <span>{book.first_publish_year}</span>
         </div>
         <div>
-        <button className='button1' onClick={handleAddToFavourite}>
-      Add to Favorite
-    </button>
+          <button className='button1' onClick={handleAddToFavourite}>
+            Add to Favorite
+          </button>
+          {isAddedToFavorites && <p>Added to favorites!</p>}
         </div>
       </div>
     </div>
